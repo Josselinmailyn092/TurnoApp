@@ -8,187 +8,164 @@
     tools:context=".MainActivity">
 
     <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="445dp"
-        android:layout_height="217dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="670dp"
+        android:layout_width="419dp"
+        android:layout_height="181dp"
         android:background="@drawable/boton_azul"
         android:backgroundTint="#0000FE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-8dp">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="434dp"
-            android:layout_height="130dp"
-            android:layout_gravity="center|center_horizontal|center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="148dp"
+            android:layout_gravity="center"
             app:srcCompat="@drawable/logo" />
     </FrameLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="421dp"
-        android:layout_height="497dp"
-        android:layout_marginTop="170dp"
-        android:layout_marginBottom="1dp"
+        android:layout_height="457dp"
+        android:layout_weight="1"
         android:background="#D1CBCB"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/turno_actual"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/frameLayout"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintBottom_toTopOf="@id/turnoActualContainer"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        tools:layout_editor_absoluteX="-8dp">
 
         <TextView
             android:id="@+id/bienvenido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/josefin_sans_semibold"
             android:gravity="center"
             android:text="BIENVENIDO"
             android:textColor="#324F97"
-            android:textFontWeight="200"
-            android:textStyle="bold"
-            tools:textSize="38dp" />
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/genere"
-            android:layout_width="414dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/josefin_sans_semibold"
             android:gravity="center"
-            android:paddingTop="5dp"
             android:text="GENERE SU TURNO "
             android:textColor="#000000"
-            android:textFontWeight="100"
-            android:textSize="25dp"
+            android:textSize="23dp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/ingreso_nombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/josefin_sans_semibold"
-            android:paddingLeft="25sp"
-            android:paddingTop="5sp"
-            android:text="Ingrese su número de cedula:"
+            android:paddingLeft="20dp"
+            android:paddingTop="5dp"
+            android:text="Ingrese su número de cédula:"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="20dp" />
 
         <EditText
-            android:id="@+id/nombre"
-            android:layout_width="267dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="5sp"
+            android:id="@+id/cedula"
+            android:layout_width="369dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
             android:background="#F8F4F4"
-            android:ems="10"
-            android:gravity="center|center_horizontal|center_vertical"
-            android:inputType="textPersonName"
-            android:paddingTop="10sp"
-            tools:layout_marginLeft="25sp" />
+            android:gravity="center"
+            android:hint="Número de cédula"
+            android:inputType="number"
+            android:maxLength="10" />
 
         <Button
             android:id="@+id/generar_turno"
-            android:layout_width="101dp"
-            android:layout_height="38dp"
-            android:layout_marginLeft="145sp"
-            android:layout_marginTop="8sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
             android:background="@drawable/boton_azul"
             android:gravity="center"
-            android:text="Generar Turno" />
-
-        <EditText
-            android:id="@+id/turno"
-            android:layout_width="256dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="40sp"
-            android:background="#F8F4F4"
-            android:ems="10"
-            android:gravity="center|center_horizontal|center_vertical"
-            android:inputType="textPersonName"
-            android:paddingTop="10sp"
-            tools:layout_marginLeft="72sp" />
+            android:text="GENERAR"
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/nuevoTurno"
-            android:layout_width="92dp"
-            android:layout_height="59dp"
-            android:layout_marginLeft="155sp"
-            android:layout_marginTop="8sp"
-            android:background="@drawable/boton_rojo"
-            android:gravity="center"
-            android:text="Nuevo Turno" />
-
-        <TextView
-            android:id="@+id/turnoActual"
-            android:layout_width="388dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30sp"
-            android:layout_marginTop="69sp"
-            android:fontFamily="sans-serif-black"
-            android:text="Turno Actual             Lista de espera  "
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/turno_actual"
-        android:layout_width="187dp"
-        android:layout_height="166dp"
-        android:layout_marginTop="560dp"
-        android:layout_marginEnd="208dp"
-        android:layout_marginBottom="1dp"
-        android:background="#344DB1"
-        android:fontFamily="@font/josefin_sans_semibold"
-        android:gravity="center"
-        android:text="A001"
-        android:textColor="#FFFFFF"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.559"
-        tools:ignore="MissingConstraints" />
-
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="192dp"
-        android:layout_height="191dp"
-        android:layout_marginStart="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints">
-
-        <LinearLayout
-            android:id="@+id/linearLayoutContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/borde"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/boton_rojo"
+            android:gravity="center"
+            android:text="NUEVO TURNO"
+            android:textColor="#FFFFFF" />
 
-            <TextView
-                android:id="@+id/queueList"
+        <Button
+            android:id="@+id/mostrar_estado"
+            android:layout_width="370dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/boton_verde"
+            android:gravity="center"
+            android:text="MOSTRAR ESTADO"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/turnoActualContainer"
+        android:layout_width="415dp"
+        android:layout_height="160dp"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="-4dp">
+
+        <TextView
+            android:id="@+id/turno_actual"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#344DB1"
+            android:fontFamily="@font/josefin_sans_semibold"
+            android:gravity="center"
+            android:text="A001"
+            android:textColor="#FFFFFF"
+            android:textSize="40dp" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/linearLayoutContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/josefin_sans_semibold"
-                android:gravity="center"
-                android:textColor="#FFFFFF"
-                android:textSize="40sp" />
-        </LinearLayout>
-    </ScrollView>
+                android:background="@drawable/borde"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/queueList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/josefin_sans_semibold"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
