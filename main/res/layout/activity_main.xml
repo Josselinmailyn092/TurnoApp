@@ -87,36 +87,36 @@
 
         <Button
             android:id="@+id/generar_turno"
-            android:layout_width="match_parent"
+            android:layout_width="365dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/boton_azul"
+            android:background="@color/azul"
             android:gravity="center"
             android:text="GENERAR"
             android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/nuevoTurno"
-            android:layout_width="match_parent"
+            android:layout_width="363dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="28dp"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/boton_rojo"
+            android:background="@color/rojo"
             android:gravity="center"
             android:text="NUEVO TURNO"
             android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/mostrar_estado"
-            android:layout_width="370dp"
-            android:layout_height="38dp"
+            android:layout_width="363dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/boton_verde"
+            android:background="@color/verde"
             android:gravity="center"
             android:text="MOSTRAR ESTADO"
             android:textColor="#FFFFFF" />
