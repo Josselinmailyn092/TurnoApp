@@ -42,6 +42,10 @@ public class activity_main_dos extends AppCompatActivity {
         btn2Act1 = findViewById(R.id.btn2Act1);
         textViewA2 = findViewById(R.id.textView2);
         String turn = getIntent().getStringExtra("turn1");
+        String contMain1=getIntent().getStringExtra("count");
+        assert contMain1 != null;
+        int contComparacion=Integer.parseInt(contMain1);
+
         textViewA2.setText(turn);
 
         // Recuperar el contador de SharedPreferences
@@ -60,17 +64,24 @@ public class activity_main_dos extends AppCompatActivity {
     }
 
     public void completarTurn(View v) {
-        int newCount = sumTurn();
+        int newCount = Turn();
+        String contMain1=getIntent().getStringExtra("comparacion");
+        int contComparacion=Integer.parseInt(contMain1);
         // Actualizar el TextView con el nuevo valor del contador
+        if(newCount<contComparacion) {
+            newCount=sumTurn();
+            String turn = String.format(Locale.getDefault(), "A%03d", newCount);
+            textViewA2.setText(turn);
+            // Incrementar el turno actual en MainActivity
+            Intent intent = new Intent();
+            intent.putExtra("contadorNuevo", newCount);
+            setResult(RESULT_OK, intent);
+            guardarTurno();
+        }else{
+            textViewA2.setText("No hay más turnos");
 
-        String turn = String.format(Locale.getDefault(), "A%03d", newCount);
-        textViewA2.setText(turn);
+        }
 
-        // Incrementar el turno actual en MainActivity
-        Intent intent = new Intent();
-        intent.putExtra("contadorNuevo", newCount);
-        setResult(RESULT_OK, intent);
-        guardarTurno();
 
     }
 

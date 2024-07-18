@@ -8,102 +8,112 @@
     tools:context=".activity_main_dos">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="439dp"
-        android:layout_height="730dp"
-        tools:layout_editor_absoluteX="-14dp"
+        android:layout_width="414dp"
+        android:layout_height="844dp"
+        tools:layout_editor_absoluteX="-2dp"
         tools:layout_editor_absoluteY="1dp">
+
+        <!--
+        boton para llevar a activity 2
+        -->
 
         <FrameLayout
             android:id="@+id/frameLayout"
-            android:layout_width="442dp"
-            android:layout_height="224dp"
-            android:layout_marginBottom="516dp"
+            android:layout_width="421dp"
+            android:layout_height="173dp"
             android:background="@drawable/boton_azul"
             android:backgroundTint="#0000FE"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="-6dp">
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="495dp"
-                android:layout_height="179dp"
+                android:layout_width="458dp"
+                android:layout_height="173dp"
                 android:layout_gravity="center|center_horizontal|center_vertical"
                 app:srcCompat="@drawable/logo"
                 tools:layout_gravity="center" />
 
         </FrameLayout>
 
-        <!--
-        boton para llevar a activity 2
-        -->
-
         <LinearLayout
-            android:layout_width="434dp"
-            android:layout_height="652dp"
-            android:layout_marginTop="180dp"
-            android:layout_marginBottom="15dp"
+            android:layout_width="414dp"
+            android:layout_height="672dp"
             android:background="#D0CACA"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/frameLayout"
-            app:layout_constraintVertical_bias="0.528">
+            app:layout_constraintVertical_bias="0.22">
 
             <TextView
                 android:id="@+id/tituloA_Main2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="20sp"
-                android:gravity="center"
-                android:paddingStart="100dp"
                 android:text="TURNOS EN ESPERA"
                 android:textSize="25sp" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="36dp"
-                android:background="#F7F3F3"
-                android:padding="5dp"
-                android:text=""
-                android:textSize="28sp" />
-
-            <Button
-                android:id="@+id/avanceTurno"
-                android:layout_width="wrap_content"
-                android:layout_height="59dp"
+            <LinearLayout
+                android:layout_width="358dp"
+                android:layout_height="79dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
+                android:orientation="horizontal">
 
-                android:background="@color/verde"
-                android:onClick="completarTurn"
-                android:text="Siguiente Turno" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="3dp"
+                    android:background="#F7F3F3"
+                    android:padding="5dp"
+                    android:text=""
+                    android:textSize="20sp" />
 
-            <Button
-                android:id="@+id/nuevoTurno"
-                android:layout_width="182dp"
-                android:layout_height="63dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                <Button
+                    android:id="@+id/avanceTurno"
+                    android:layout_width="129dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="35dp"
 
-                android:layout_marginBottom="228dp"
-                android:background="@color/rojo"
-                android:onClick="limpiarMainActivity"
-                android:text="NUEVO TURNO"
-                android:textColor="#FFFFFF" />
+                    android:layout_marginTop="3dp"
+                    android:background="@color/azul"
+                    android:onClick="completarTurn"
+                    android:text="Siguiente Turno"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btn2Act1"
-                android:layout_width="wrap_content"
+                android:layout_width="302dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="131dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:background="@color/celeste"
                 android:onClick="CambioAct1"
-                android:text="Volver a generar turnos" />
+                android:text="GENERAR TURNO NUEVO" />
+
+            <Button
+                android:id="@+id/nuevoTurno"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="60dp"
+
+                android:layout_marginBottom="28dp"
+                android:background="@color/rojo"
+                android:onClick="limpiarMainActivity"
+                android:text="RESETEAR TURNOS"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
         </LinearLayout>
 
 

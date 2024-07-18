@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvTurnoActual;
 
     private TextView numTurn;
-
+    private TextView ultimTurn;
 
     private Queue<String> cola;
     private int turnoCount = 0;
@@ -39,10 +39,11 @@ public class MainActivity extends AppCompatActivity {
         numTurn = findViewById(R.id.numT);
         tvTurnoActual = findViewById(R.id.turno_actual);
         tvTurnoActual.setText(String.valueOf(turnActual()));
-
+        ultimTurn=findViewById(R.id.ultimoTurn);
         // Inicializar cola y turnoCount desde SharedPreferences
         cola = loadQueue();
         turnoCount = loadTurnoCount();
+        ultimTurn.setText(String.format(Locale.getDefault(), "A%03d",loadTurnoCount()));
 
         if (getIntent().getBooleanExtra("reset", false)) {
             limpiarTurnos();
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         String turn = String.format(Locale.getDefault(), "A%03d", turnoCount);
         numTurn.setText(turn);
+        ultimTurn.setText(String.format(Locale.getDefault(), "A%03d", turnoCount));
 
         cola.add(turn);
         guardarCola();
@@ -91,10 +93,11 @@ public class MainActivity extends AppCompatActivity {
     public void cambioMain(View v) {
         String turno = obtenerTurnoActual();
 
-            Intent intent = new Intent(this, activity_main_dos.class);
-            intent.putExtra("turn1", turno); // Pasar el turno actual
-            intent.putExtra("count", String.valueOf(turnoAtencion)); // Pasar el contador
-            startActivity(intent);
+        Intent intent = new Intent(this, activity_main_dos.class);
+        intent.putExtra("turn1", turno); // Pasar el turno actual
+        intent.putExtra("count", String.valueOf(turnoAtencion)); // Pasar el contador
+        intent.putExtra("comparacion",String.valueOf(loadTurnoCount()));
+        startActivity(intent);
 
     }
     public void limpiarTurnos() {
