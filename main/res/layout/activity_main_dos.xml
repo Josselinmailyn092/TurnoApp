@@ -37,5 +37,76 @@
                 tools:layout_gravity="center" />
         </FrameLayout>
 
+        <TextView
+            android:id="@+id/tituloA_Main2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INGRESO DE TURNO ATENDIDO"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+            app:layout_constraintVertical_bias="0.062" />
+
+        <!--
+        boton para llevar a activity 2
+        -->
+
+        <Button
+            android:id="@+id/btn2Act1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="CambioAct1"
+            android:text="Volver a generar turnos"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="643dp"
+
+            />
+
+        <Button
+            android:id="@+id/avanceTurno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="Button"
+            android:onClick="completarTurn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloA_Main2"
+            app:layout_constraintVertical_bias="0.058" />
+
+        <Button
+            android:id="@+id/nuevoTurno"
+            android:layout_width="236dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="208dp"
+            android:background="@color/rojo"
+            android:gravity="center"
+            android:text="NUEVO TURNO"
+            android:onClick="limpiarMainActivity"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="76dp"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

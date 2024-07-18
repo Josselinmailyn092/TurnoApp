@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">turnos_espera</string>
+    <string name="numT1">"Genere su turno</string>
 </resources>

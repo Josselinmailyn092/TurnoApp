@@ -1,154 +1,144 @@
 package com.example.turnos_espera;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Queue;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText numCedula;
     private TextView tvTurnoActual;
-    private TextView tvQueueList;
-    private Button btnGenerarTurno;
-    private Button btnNuevoTurno;
-    private Button btnMostrarEstado;
+
+    private TextView numTurn;
+
 
     private Queue<String> cola;
     private int turnoCount = 0;
+    public int turnoAtencion=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
         numCedula = findViewById(R.id.cedula);
+        numTurn = findViewById(R.id.numT);
         tvTurnoActual = findViewById(R.id.turno_actual);
-        tvQueueList = findViewById(R.id.queueList);
-        btnGenerarTurno = findViewById(R.id.generar_turno);
-        btnNuevoTurno = findViewById(R.id.nuevoTurno);
-        btnMostrarEstado = findViewById(R.id.mostrar_estado);
+        tvTurnoActual.setText(String.valueOf(turnActual()));
 
-        cola = new LinkedList<>();
+        // Inicializar cola y turnoCount desde SharedPreferences
+        cola = loadQueue();
+        turnoCount = loadTurnoCount();
 
-        btnGenerarTurno.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                generarTurno();
-            }
-        });
-
-        btnNuevoTurno.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nuevoTurno();
-            }
-        });
-
-        btnMostrarEstado.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mostrarEstado();
-            }
-        });
+        if (getIntent().getBooleanExtra("reset", false)) {
+            limpiarTurnos();
+        }
     }
 
-    private void generarTurno() {
+    public String generarTurno(View v) {
         String cedula = numCedula.getText().toString().trim();
 
         if (TextUtils.isEmpty(cedula) || cedula.length() != 10) {
             Toast.makeText(this, "Ingrese un número de cédula válido de 10 dígitos", Toast.LENGTH_SHORT).show();
-            return;
+            return null;
         }
 
         turnoCount++;
-        String turno = String.format(Locale.getDefault(), "A%03d", turnoCount);
+        guardarTurnoCount(turnoCount);
 
-        tvTurnoActual.setText(turno);
-        cola.add(turno);
-        //actualizarListaEspera();
+        String turn = String.format(Locale.getDefault(), "A%03d", turnoCount);
+        numTurn.setText(turn);
+
+        cola.add(turn);
+        guardarCola();
+        return turn;
     }
 
-    private void nuevoTurno() {
-        numCedula.setText("");
-        tvTurnoActual.setText("A001");
-        tvQueueList.setText("");
-        cola.clear();
+    public String obtenerTurnoActual() {
+        if (turnoAtencion== 0) {
+            return null;
+        }
+        return String.format(Locale.getDefault(), "A%03d", turnoAtencion);
+    }
+    public String turnActual() {
+        Intent intent = getIntent();
+
+        String turno = intent.getStringExtra("contadorNuevo");
+        if (turno == null) {
+            // Obtener el valor del contador de SharedPreferences
+            SharedPreferences sharedPreferences = getSharedPreferences("contador", Context.MODE_PRIVATE);
+            int contadorGuardado = sharedPreferences.getInt("contador", 0);
+            // Formatear el turno
+            turno = String.format(Locale.getDefault(), "A%03d", contadorGuardado);
+        }
+        return turno;
+    }
+
+    public void cambioMain(View v) {
+        String turno = obtenerTurnoActual();
+
+            Intent intent = new Intent(this, activity_main_dos.class);
+            intent.putExtra("turn1", turno); // Pasar el turno actual
+            intent.putExtra("count", String.valueOf(turnoAtencion)); // Pasar el contador
+            startActivity(intent);
+
+    }
+    public void limpiarTurnos() {
+        // Restablecer variables en memoria
         turnoCount = 0;
-    }
-
-    private void mostrarEstado() {
-        if (cola.isEmpty()) {
-            Toast.makeText(this, "La cola está vacía.", Toast.LENGTH_SHORT).show();
-        } else {
-            StringBuilder estado = new StringBuilder("Estado de la cola:\n");
-            for (String turno : cola) {
-                estado.append(turno).append("\n");
-            }
-            Toast.makeText(this, estado.toString(), Toast.LENGTH_LONG).show();
-        }
-    }
-/*
-    private void actualizarListaEspera() {
-        StringBuilder lista = new StringBuilder();
-        for (String turno : cola) {
-            lista.append(turno).append("\n");
-        }
-        tvQueueList.setText(lista.toString());
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_siguiente_elemento:
-                verSiguienteElemento();
-                return true;
-            case R.id.action_vaciar_cola:
-                vaciarCola();
-                return true;
-            case R.id.action_salir:
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private void verSiguienteElemento() {
-        if (cola.isEmpty()) {
-            Toast.makeText(this, "La cola está vacía.", Toast.LENGTH_SHORT).show();
-        } else {
-            String siguiente = cola.peek();
-            Toast.makeText(this, "Siguiente elemento: " + siguiente, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void vaciarCola() {
+        turnoAtencion = 0;
         cola.clear();
-        actualizarListaEspera();
-        Toast.makeText(this, "La cola ha sido vaciada.", Toast.LENGTH_SHORT).show();
+
+        // Restablecer SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("TurnosPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+
+        // Actualizar la interfaz de usuario
+        numTurn.setText("");
+        tvTurnoActual.setText("");
+
+        Toast.makeText(this, "Todos los valores han sido restablecidos", Toast.LENGTH_SHORT).show();
     }
 
- */
+    private void guardarTurnoCount(int count) {
+        SharedPreferences sharedPreferences = getSharedPreferences("TurnosPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("turnoCount", count);
+        editor.apply();
+    }
+
+    private int loadTurnoCount() {
+        SharedPreferences sharedPreferences = getSharedPreferences("TurnosPrefs", MODE_PRIVATE);
+        return sharedPreferences.getInt("turnoCount", 0);
+    }
+
+    private void guardarCola() {
+        SharedPreferences sharedPreferences = getSharedPreferences("TurnosPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Set<String> set = new HashSet<>(cola);
+        editor.putStringSet("cola", set);
+        editor.apply();
+    }
+
+    private Queue<String> loadQueue() {
+        SharedPreferences sharedPreferences = getSharedPreferences("TurnosPrefs", MODE_PRIVATE);
+        Set<String> set = sharedPreferences.getStringSet("cola", new HashSet<>());
+        return new LinkedList<>(set);
+    }
 }
