@@ -8,18 +8,18 @@
     tools:context=".MainActivity">
 
     <FrameLayout
-        android:layout_width="419dp"
-        android:layout_height="181dp"
+        android:layout_width="416dp"
+        android:layout_height="177dp"
         android:background="@drawable/boton_azul"
         android:backgroundTint="#0000FE"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-8dp">
+        tools:layout_editor_absoluteX="0dp">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="148dp"
+            android:layout_width="436dp"
+            android:layout_height="177dp"
             android:layout_gravity="center"
             app:srcCompat="@drawable/logo" />
 
@@ -27,14 +27,14 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="421dp"
-        android:layout_height="457dp"
+        android:layout_width="406dp"
+        android:layout_height="480dp"
         android:layout_weight="1"
         android:background="#D1CBCB"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/turnoActualContainer"
         app:layout_constraintTop_toBottomOf="@id/imageView"
-        tools:layout_editor_absoluteX="-8dp">
+        tools:layout_editor_absoluteX="-12dp">
 
         <TextView
             android:id="@+id/bienvenido"
@@ -65,6 +65,7 @@
             android:id="@+id/ingreso_nombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/josefin_sans_semibold"
             android:paddingLeft="20dp"
@@ -75,9 +76,9 @@
 
         <EditText
             android:id="@+id/cedula"
-            android:layout_width="369dp"
-            android:layout_height="46dp"
-            android:layout_marginStart="20dp"
+            android:layout_width="349dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="28dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:background="#F8F4F4"
@@ -88,62 +89,55 @@
 
         <Button
             android:id="@+id/generar_turno"
-            android:layout_width="365dp"
+            android:layout_width="154dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
             android:background="@color/azul"
             android:gravity="center"
-            android:text="GENERAR"
             android:onClick="generarTurno"
-            android:textColor="#FFFFFF" />
-
-        <Button
-            android:id="@+id/mostrar_estado"
-            android:layout_width="363dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="20dp"
-            android:background="@color/verde"
-            android:gravity="center"
-            android:text="MOSTRAR ESTADO"
+            android:text="GENERAR"
             android:textColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/numT"
-            android:layout_width="215dp"
+            android:layout_width="196dp"
+            android:layout_height="71dp"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="30sp"
-            android:hint="@string/numT1"
+            android:layout_marginTop="58sp"
+            android:layout_marginBottom="18sp"
 
-            android:layout_height="wrap_content"
-            android:text="" />
+            android:background="#F7F3F3"
+            android:gravity="center"
+            android:hint="@string/numT1"
+            android:text=""
+            android:textSize="30sp" />
 
         <!--
         boton para llevar a activity 2
         -->
         <Button
             android:id="@+id/btnAct2"
-            android:layout_width="wrap_content"
+            android:layout_width="177dp"
             android:layout_height="wrap_content"
-            android:onClick="cambioMain"
             android:layout_gravity="center"
-            android:background="@color/purple_200"
+            android:background="@color/verde"
+            android:onClick="cambioMain"
             android:text="Confirmar Atención" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/turnoActualContainer"
-        android:layout_width="415dp"
-        android:layout_height="160dp"
+        android:layout_width="389dp"
+        android:layout_height="123dp"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:padding="16dp"
+        android:padding="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="-4dp">
+        tools:layout_editor_absoluteX="23dp">
 
         <TextView
             android:id="@+id/turno_actual"
@@ -174,10 +168,40 @@
                     android:id="@+id/queueList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#2196F3"
                     android:fontFamily="@font/josefin_sans_semibold"
                     android:gravity="center"
                     android:textColor="#FFFFFF"
                     android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/queueList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/josefin_sans_semibold"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/queueList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#2196F3"
+                    android:fontFamily="@font/josefin_sans_semibold"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/queueList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/josefin_sans_semibold"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp" />
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
